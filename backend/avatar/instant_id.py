@@ -1,15 +1,17 @@
 import cv2
-import numpy as np
 
 def apply_instant_id(input_path):
-    # Placeholder until you load actual model
-    # Later → load Instant-ID weights
+    """
+    REAL MODEL: Instant-ID pipeline
+    - Load SD + InstantID plugin
+    - Encode face identity
+    - Return conditioned identity image
 
-    image = cv2.imread(input_path)
+    CURRENT: Placeholder (copies image)
+    """
 
-    # Return same image for now
-    # (Model integration will replace this)
-    out_path = input_path.replace("input", "instant_id")
+    img = cv2.imread(input_path)
+    out = input_path.replace("input", "id")
+    cv2.imwrite(out, img)
 
-    cv2.imwrite(out_path, image)
-    return out_path
+    return out
