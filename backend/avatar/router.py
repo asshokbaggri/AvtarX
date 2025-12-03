@@ -1,11 +1,7 @@
-from fastapi import APIRouter, UploadFile, File, Form
-from .engine import process_avatar
+from fastapi import APIRouter, UploadFile
 
-router = APIRouter(tags=["Avatar"])
+router = APIRouter()
 
-@router.post("/create")
-async def create_avatar(
-    image: UploadFile = File(...),
-    style_id: str = Form("model_1")
-):
-    return await process_avatar(image, style_id)
+@router.post("/avatar")
+async def create_avatar(file: UploadFile):
+    return {"status": "avatar_disabled"}
