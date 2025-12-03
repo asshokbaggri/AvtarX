@@ -1,3 +1,3 @@
-def save_temp(image_bytes, path):
+def temp_save(path, bytes_data):
     with open(path, "wb") as f:
-        f.write(image_bytes)
+        f.write(bytes_data)
