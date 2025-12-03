@@ -1,122 +1,218 @@
-# 🚀 AvtarX — AI Avatar • AI Video • AI Chat • AI Voice
+# 🚀 AvtarX — AI Avatar • AI Chat • AI Voice • AI Video
 
-AvtarX is a next-generation AI platform that allows users to:
-- Create beautiful AI avatars instantly  
-- Chat with an adaptive, personality-based AI  
-- Generate realistic AI voices  
-- Produce talking-avatar videos using advanced AI models  
+AvtarX is a next-gen AI ecosystem that lets users:
 
-All inside one powerful, unified ecosystem.
+- Create beautiful AI avatars  
+- Generate talking-avatar videos  
+- Chat with an adaptive AI personality  
+- Generate human-like AI voices  
+- Use one unified AI pipeline (Avatar → Chat → Voice → Video)
 
----
-
-## 🧠 Core Features
-
-### 📸 **1. AI Avatar Generator**
-- Instant-ID (face identity extraction)  
-- IP-Adapter (style-transfer)  
-- Stable Diffusion / SDXL pipeline  
-- Enhancement & glow-up filters  
-- CDN-backed high-speed outputs  
+All inside a single app.
 
 ---
 
-### 🧠 **2. AI Chat Engine**
-- GPT/Llama powered responses  
-- Tone detection  
-- Personality adaptive responses  
-- Multiple global conversational styles  
+## ⚡ Features
+
+- 🎭 **AI Avatar Generator** (Instant-ID + IP-Adapter)
+- 🧠 **AI Chat Engine** (Tone detection + Adaptive personality)
+- 🎤 **AI Voice Engine** (XTTS v2)
+- 🎞 **AI Video Engine** (SADTALKER + Wav2Lip)
+- 📱 **Flutter App with Neon Dark UI**
+- 🔐 **Firebase Authentication**
+- ☁️ **Cloudflare R2 Storage**
+- 🖥 **GPU-powered microservices**
 
 ---
 
-### 🎤 **3. AI Voice Engine**
-- XTTS v2 text-to-speech  
-- Avatar-based voice mapping  
-- Emotional & natural voice output  
+## 🏗 Project Structure
 
----
-
-### 🎞 **4. Talking Avatar Video Engine**
-- SADTalker motion generation  
-- Wav2Lip lip-sync  
-- Auto-captions  
-- Vertical 1080×1920 format  
-- Cloudflare R2 video delivery  
-
----
-
-## 🏗️ Project Architecture
-
+```
 avtarx/
-├── backend/        # FastAPI + AI engines
-├── mobile/         # Flutter app (Neon UI)
-├── docs/           # Architecture & API docs
-├── devops/         # Docker, GPU, NGINX
-├── scripts/        # Deployment & model scripts
-├── tests/          # Backend & mobile tests
-├── LICENSE
+│
+├── backend/          # FastAPI microservices
+├── mobile/           # Flutter Neon App
+├── docs/             # Technical documentation
+├── devops/           # Docker + Nginx + GPU workers
+├── scripts/          # Model install + deploy scripts
+├── tests/            # Backend + API + Mobile tests
 ├── .gitignore
+├── LICENSE
 └── README.md
+```
 
 ---
 
-## 🧩 Tech Stack
+## 🧠 Backend Structure (FastAPI)
 
-### **Frontend**
-- Flutter  
-- Provider State Management  
-- Neon Dark Theme  
-
-### **Backend**
-- FastAPI  
-- Firebase Auth  
-- Cloudflare R2  
-- Docker + NGINX  
-
-### **AI Pipelines**
-- Instant-ID  
-- IP-Adapter  
-- SDXL  
-- XTTS v2  
-- SADTalker  
-- Wav2Lip  
+```
+backend/
+│
+├── auth/
+│   ├── router.py
+│   ├── signup.py
+│   ├── login.py
+│   └── verify.py
+│
+├── avatar/
+│   ├── router.py
+│   ├── engine.py
+│   ├── instant_id.py
+│   ├── ip_adapter.py
+│   ├── enhancer.py
+│   └── utils.py
+│
+├── chat/
+│   ├── router.py
+│   ├── engine.py
+│   ├── tone_detector.py
+│   ├── personality_adapter.py
+│   └── llm_client.py
+│
+├── voice/
+│   ├── router.py
+│   ├── voice_mapper.py
+│   └── tts/
+│       └── xtts_v2.py
+│
+├── video/
+│   ├── router.py
+│   ├── caption_gen.py
+│   ├── formatter.py
+│   └── lipsync/
+│       ├── sadtalker.py
+│       └── wav2lip.py
+│
+├── models/
+│   ├── instant_id_weights/
+│   ├── ip_adapter_weights/
+│   ├── stable_diffusion/
+│   ├── wav2lip_weights/
+│   └── sadtalker_weights/
+│
+├── config/
+│   ├── settings.py
+│   └── secrets_example.json
+│
+├── utils/
+│   ├── logger.py
+│   ├── storage.py
+│   ├── ffmpeg.py
+│   ├── cdn.py
+│   └── queue_system.py
+│
+└── main.py
+```
 
 ---
 
-## 🔧 Setup Guide
+## 📱 Mobile App Structure (Flutter)
 
-### 1️⃣ Backend Setup
+```
+mobile/
+└── lib/
+    ├── main.dart
+    ├── theme/
+    │   └── app_theme.dart
+    ├── screens/
+    │   ├── onboarding/
+    │   ├── home/
+    │   ├── avatar_creator/
+    │   ├── chat/
+    │   ├── voice_chat/
+    │   ├── video_preview/
+    │   ├── history/
+    │   └── profile/
+    ├── components/
+    ├── controllers/
+    ├── services/
+    └── utils/
+```
 
+---
+
+## 🤖 AI Pipeline Flow
+
+```
+User Image
+    ↓
+Instant-ID → Identity Extract
+    ↓
+IP-Adapter → Style Mapping
+    ↓
+Avatar Enhancer → Glow & Cleanup
+    ↓
+User Text → Chat Engine → LLM
+    ↓
+AI Voice (XTTS) → Audio
+    ↓
+Talking Video (SADTALKER + Wav2Lip)
+    ↓
+1080x1920 Export → CDN
+```
+
+---
+
+## 🐳 Docker Deployment
+
+Start backend + workers + GPU:
+
+```
 cd devops
-docker-compose up –build -d
+docker-compose up --build -d
+```
 
-### 2️⃣ Mobile App Setup
+---
 
+## 📦 Install AI Model Weights
+
+```
+python scripts/install_models.py
+```
+
+Then place models here:
+
+```
+backend/models/
+    ├── instant_id_weights/
+    ├── ip_adapter_weights/
+    ├── stable_diffusion/
+    ├── wav2lip_weights/
+    └── sadtalker_weights/
+```
+
+---
+
+## 🚀 Running the Mobile App
+
+```
 cd mobile
 flutter pub get
 flutter run
-
-### 3️⃣ Model Installation
-
----
-
-## 🚀 Deployment
-
-- Dockerized backend  
-- GPU worker support  
-- NGINX reverse proxy  
-- Cloudflare CDN acceleration  
-- Supervisor process control  
-
-All production-ready.
+```
 
 ---
 
-## 🤝 Contributing
-Pull requests & improvements are welcome.
+## 📝 Docs Included
+
+- Architecture  
+- API Routes  
+- Database Structure  
+- Design System  
+- Deployment Guide  
+- Roadmap  
+
+All inside `/docs`.
 
 ---
 
-## 📄 License  
+## 📄 License
+
 MIT License © 2025 AvtarX
 
+---
+
+## 💬 Contributing
+
+PRs welcome.  
+Let's build the future of AI avatars 🔥
