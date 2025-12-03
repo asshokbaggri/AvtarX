@@ -1,0 +1,7 @@
+from fastapi import APIRouter
+
+router = APIRouter()
+
+@router.post("/message")
+def chat_message():
+    return {"reply": "AI chat engine coming soon!"}
