@@ -1,9 +1,9 @@
 from fastapi import APIRouter
-from .login import login_user
 from .signup import signup_user
+from .login import login_user
 from .verify import verify_token
 
-router = APIRouter()
+router = APIRouter(tags=["Auth"])
 
 @router.post("/signup")
 def signup(data: dict):
