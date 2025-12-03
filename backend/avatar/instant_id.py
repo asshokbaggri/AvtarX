@@ -1,17 +1,4 @@
-import cv2
+# Avatar Instant-ID temporarily disabled during backend setup.
 
-def apply_instant_id(input_path):
-    """
-    REAL MODEL: Instant-ID pipeline
-    - Load SD + InstantID plugin
-    - Encode face identity
-    - Return conditioned identity image
-
-    CURRENT: Placeholder (copies image)
-    """
-
-    img = cv2.imread(input_path)
-    out = input_path.replace("input", "id")
-    cv2.imwrite(out, img)
-
-    return out
+def apply_instant_id(image_path):
+    return None
