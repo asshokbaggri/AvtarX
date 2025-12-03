@@ -1,0 +1,46 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+env/
+venv/
+.venv/
+
+# Flutter
+build/
+.pub-cache/
+.flutter-plugins
+.flutter-plugins-dependencies
+.dart_tool/
+
+# VS Code
+.vscode/
+.idea/
+
+# Mac / Windows System Files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Environment / Secrets
+.env
+*.key
+*.json
+firebase_key.json
+
+# Models
+backend/models/*
+!backend/models/**/README.md
+
+# Deployment
+*.pid
+*.sock
+
+# Docker
+devops/docker/*.tar
+
+# Node (if any future widgets)
+node_modules/
