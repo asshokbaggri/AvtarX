@@ -1,0 +1,23 @@
+version: '3.9'
+
+services:
+  backend:
+    build:
+      context: ..
+      dockerfile: devops/docker/backend.dockerfile
+    ports:
+      - "8000:8000"
+    restart: always
+
+  worker:
+    build:
+      context: ..
+      dockerfile: devops/docker/worker.dockerfile
+    restart: always
+
+  gpu:
+    build:
+      context: ..
+      dockerfile: devops/docker/gpu.dockerfile
+    runtime: nvidia
+    restart: always
