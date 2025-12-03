@@ -8,25 +8,25 @@ from voice.router import router as voice_router
 from video.router import router as video_router
 
 app = FastAPI(
-    title="AvtarX API",
-    description="AI Avatar, AI Chat, AI Voice, AI Video Engine",
-    version="1.0.0"
+    title="AvtarX Backend",
+    version="1.0.0",
+    description="AI Avatar + AI Chat + AI Voice + AI Video"
 )
 
 # CORS
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
-    allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
+    allow_credentials=True
 )
 
 @app.get("/")
-def home():
-    return {"status": "running", "app": "AvtarX API"}
+def root():
+    return {"status": "running", "service": "AvtarX API"}
 
-# Routers
+# Register routers
 app.include_router(auth_router, prefix="/auth")
 app.include_router(avatar_router, prefix="/avatar")
 app.include_router(chat_router, prefix="/chat")
