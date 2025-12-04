@@ -1,16 +1,40 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class AppTheme {
+  // COLORS SAME AS CHATGPT
+  static const Color primary = Color(0xFF10A37F);
+  static const Color background = Color(0xFFF7F7F8);
+  static const Color darkBackground = Color(0xFF050509);
+  static const Color userBubble = Color(0xFFECECF1);
+  static const Color aiBubble = Colors.white;
+
+  static ThemeData lightTheme = ThemeData(
+    brightness: Brightness.light,
+    scaffoldBackgroundColor: background,
+    primaryColor: primary,
+    fontFamily: "Inter",
+    appBarTheme: const AppBarTheme(
+      elevation: 0,
+      backgroundColor: background,
+      foregroundColor: Colors.black,
+    ),
+    inputDecorationTheme: InputDecorationTheme(
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(14),
+        borderSide: const BorderSide(color: Colors.black12),
+      ),
+    ),
+  );
+
   static ThemeData darkTheme = ThemeData(
     brightness: Brightness.dark,
-    scaffoldBackgroundColor: const Color(0xFF0B0E14),
-    primaryColor: const Color(0xFF4B7BFF),
-    textTheme: TextTheme(
-      bodyMedium: GoogleFonts.inter(color: Colors.white),
-      headlineSmall: GoogleFonts.poppins(color: Colors.white),
+    scaffoldBackgroundColor: darkBackground,
+    primaryColor: primary,
+    fontFamily: "Inter",
+    appBarTheme: const AppBarTheme(
+      elevation: 0,
+      backgroundColor: darkBackground,
+      foregroundColor: Colors.white,
     ),
-    fontFamily: GoogleFonts.inter().fontFamily,
-    useMaterial3: true,
   );
 }
