@@ -13,7 +13,7 @@ class AvtarXApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "AvtarX",
+      title: "AvtarX (Test Build)",
       debugShowCheckedModeBanner: false,
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
