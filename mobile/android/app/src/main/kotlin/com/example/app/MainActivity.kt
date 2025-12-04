@@ -1,3 +1,6 @@
-package com.example.app
+package com.avatarx
+
 import io.flutter.embedding.android.FlutterActivity
-class MainActivity: FlutterActivity() {}
+
+class MainActivity: FlutterActivity() {
+}
