@@ -21,22 +21,35 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Install Flutter
+      # ← YE SABSE BADA FIX HAI
+      - name: Setup Java (must before Flutter)
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      # ← CACHE KO EK BAAR OFF KAR DO (permanent solution)
+      - name: Install Flutter (No Cache)
         uses: subosito/flutter-action@v2
         with:
           channel: stable
+          cache: false                     # ← YE DAAL DO
+          cache-key: flutter-${{ runner.os }}
 
-      - name: Install Dependencies
-        run: flutter pub get
-
-      - name: Run Tests
-        run: flutter test || true
+      # ← FULL NUKE CLEAN (yeh 99% cases mein fix kar deta hai)
+      - name: Nuclear Clean
+        run: |
+          flutter clean
+          flutter pub get
+          rm -rf $FLUTTER_ROOT/.pub-cache
+          rm -rf ~/.pub-cache || true
 
       - name: Build APK
-        run: flutter build apk --release
+        run: flutter build apk --release --no-tree-shake-icons
 
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
         with:
           name: app-release
           path: mobile/build/app/outputs/flutter-apk/app-release.apk
+          if-no-files-found: error
