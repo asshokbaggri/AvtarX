@@ -6,7 +6,8 @@ on:
       - main
     paths:
       - 'mobile/**'
-      - 'mobile/.github/workflows/flutter-android.yml'
+      - '.github/workflows/flutter-android.yml'
+  workflow_dispatch:
 
 jobs:
   build:
@@ -28,11 +29,14 @@ jobs:
       - name: Install Dependencies
         run: flutter pub get
 
+      - name: Run Tests
+        run: flutter test || true   # (optional: ignore no tests)
+
       - name: Build APK
         run: flutter build apk --release
 
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v3
         with:
-          name: avtarx-release-apk
+          name: app-release
           path: mobile/build/app/outputs/flutter-apk/app-release.apk
