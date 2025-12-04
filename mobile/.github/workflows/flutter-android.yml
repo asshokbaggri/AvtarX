@@ -2,8 +2,11 @@ name: Build Flutter Android APK
 
 on:
   push:
-    branches: [main]
-  workflow_dispatch:
+    branches:
+      - main
+    paths:
+      - 'mobile/**'
+      - 'mobile/.github/workflows/flutter-android.yml'
 
 jobs:
   build:
@@ -31,5 +34,5 @@ jobs:
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v3
         with:
-          name: avtarx-apk
+          name: avtarx-release-apk
           path: mobile/build/app/outputs/flutter-apk/app-release.apk
