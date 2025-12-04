@@ -9,3 +9,4 @@ pydantic
 opencv-python
 numpy
 Pillow
+openai==1.51.0
