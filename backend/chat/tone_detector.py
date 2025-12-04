@@ -1,13 +1,13 @@
-def detect_tone(text: str):
+# tone_detector.py
+
+def detect_tone(text):
     text = text.lower()
 
-    if any(x in text for x in ["sad", "tired", "upset", "help"]):
-        return "emotional"
-
-    if any(x in text for x in ["hey", "bro", "bhai", "yo"]):
-        return "friendly"
-
-    if any(x in text for x in ["urgent", "now", "fast", "quick"]):
-        return "urgent"
-
+    if any(x in text for x in ["sad", "upset", "tired", "down"]):
+        return "sad"
+    if any(x in text for x in ["angry", "mad", "frustrated"]):
+        return "angry"
+    if any(x in text for x in ["happy", "great", "awesome"]):
+        return "happy"
+    
     return "neutral"
