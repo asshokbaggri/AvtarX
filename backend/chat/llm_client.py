@@ -1,15 +1,13 @@
-# llm_client.py
-import os
 from openai import OpenAI
+import os
 
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+def chat_completion(messages):
+    client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
-MODEL = "gpt-5.1"
-
-async def chat_completion(messages):
     response = client.chat.completions.create(
-        model=MODEL,
+        model="gpt-5.1",
         messages=messages,
+        max_tokens=800,
         temperature=0.7
     )
     return response.choices[0].message["content"]
