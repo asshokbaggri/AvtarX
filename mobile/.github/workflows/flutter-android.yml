@@ -1,0 +1,34 @@
+name: Build Flutter Android APK
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Install Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.24.4"
+
+      - name: Flutter pub get
+        run: flutter pub get
+        working-directory: ./mobile
+
+      - name: Build APK
+        run: flutter build apk --release
+        working-directory: ./mobile
+
+      - name: Upload APK Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: avtarx-release-apk
+          path: mobile/build/app/outputs/flutter-apk/app-release.apk
