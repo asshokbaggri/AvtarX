@@ -14,3 +14,5 @@ class ChatRequest(BaseModel):
 async def chat_api(req: ChatRequest):
     result = await process_chat(req.message, req.history)
     return result
+
+# test deploy
