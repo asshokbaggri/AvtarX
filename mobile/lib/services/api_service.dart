@@ -1,11 +1,11 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import '../utils/constants.dart';
 
 class ApiService {
-  static const String baseUrl = "https://YOUR_RENDER_BACKEND_URL"; // <- CHANGE
 
   static Future<String> sendMessage(String msg) async {
-    final url = Uri.parse("$baseUrl/chat/message");
+    final url = Uri.parse(AppConstants.chatEndpoint);
 
     final res = await http.post(
       url,
@@ -14,7 +14,6 @@ class ApiService {
     );
 
     final data = jsonDecode(res.body);
-
     return data["reply"] ?? "Server error";
   }
 }
