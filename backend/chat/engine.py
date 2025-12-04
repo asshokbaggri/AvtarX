@@ -1,19 +1,31 @@
+# engine.py
+
+from .llm_client import chat_completion
+from .personality_adapter import apply_personality
 from .tone_detector import detect_tone
-from .personality_adapter import adapt_personality
-from .llm_client import generate_ai_response
 
-async def process_message(user_id, text):
-    # Step 1 — Tone detection
-    tone = detect_tone(text)
+async def process_chat(message, history):
+    # Detect user mood
+    tone = detect_tone(message)
 
-    # Step 2 — Adapt message (user behavior)
-    adapted_prompt = adapt_personality(text, tone)
+    # Apply optional personality
+    final_text = apply_personality(message, base="neutral")
 
-    # Step 3 — LLM final output
-    reply = generate_ai_response(adapted_prompt)
+    # Build messages list for GPT-5.1
+    messages = []
+
+    # Convert history to OpenAI format
+    for h in history:
+        messages.append({"role": "user", "content": h["user"]})
+        messages.append({"role": "assistant", "content": h["bot"]})
+
+    # Add new user message
+    messages.append({"role": "user", "content": final_text})
+
+    # Call GPT-5.1
+    bot_reply = await chat_completion(messages)
 
     return {
-        "status": "success",
-        "reply": reply,
-        "tone_detected": tone
+        "reply": bot_reply,
+        "tone": tone
     }
