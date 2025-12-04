@@ -1,29 +1,30 @@
-def flutterVersionCode = 1
-def flutterVersionName = "1.0"
-
-apply plugin: "com.android.application"
-apply plugin: "kotlin-android"
-apply from: "../../flutter.gradle"
+plugins {
+    id "com.android.application"
+    id "kotlin-android"
+    id "dev.flutter.flutter-gradle-plugin"
+}
 
 android {
-    compileSdkVersion flutter.compileSdkVersion
-    ndkVersion flutter.ndkVersion
+    namespace "com.avatarx.app"
+    compileSdk 34
 
     defaultConfig {
-        applicationId "com.avatarx"
-        minSdkVersion 21
-        targetSdkVersion flutter.targetSdkVersion
-        versionCode flutterVersionCode
-        versionName flutterVersionName
+        applicationId "com.avatarx.app"
+        minSdk 21
+        targetSdk 34
+        versionCode 1
+        versionName "1.0"
     }
 
     buildTypes {
         release {
+            minifyEnabled false
+            shrinkResources false
             signingConfig signingConfigs.debug
         }
     }
 }
 
-dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+flutter {
+    source "../.."
 }
