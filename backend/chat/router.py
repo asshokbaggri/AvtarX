@@ -1,11 +1,16 @@
+# router.py
+
 from fastapi import APIRouter
-from .engine import process_message
+from pydantic import BaseModel
+from .engine import process_chat
 
-router = APIRouter(tags=["Chat"])
+router = APIRouter(tags=["ChatGPT5"])
 
-@router.post("/message")
-async def chat_message(body: dict):
-    user_text = body.get("message", "")
-    user_id = body.get("user_id", "unknown")
+class ChatRequest(BaseModel):
+    message: str
+    history: list = []
 
-    return await process_message(user_id, user_text)
+@router.post("/chat")
+async def chat_api(req: ChatRequest):
+    result = await process_chat(req.message, req.history)
+    return result
