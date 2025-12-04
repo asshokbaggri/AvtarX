@@ -1,21 +1,24 @@
 import 'package:flutter/material.dart';
 import 'theme/app_theme.dart';
-import 'screens/onboarding/onboarding_screen.dart';
+import 'screens/chat/chat_screen.dart';
 
 void main() {
-  runApp(const AvtarX());
+  WidgetsFlutterBinding.ensureInitialized();
+  runApp(const AvtarXApp());
 }
 
-class AvtarX extends StatelessWidget {
-  const AvtarX({super.key});
+class AvtarXApp extends StatelessWidget {
+  const AvtarXApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
       title: "AvtarX",
-      theme: AppTheme.darkTheme,
-      home: const OnboardingScreen(),
+      debugShowCheckedModeBanner: false,
+      theme: AppTheme.lightTheme,
+      darkTheme: AppTheme.darkTheme,
+      themeMode: ThemeMode.system,
+      home: const ChatScreen(),
     );
   }
 }
