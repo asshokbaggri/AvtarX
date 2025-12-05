@@ -1,26 +1,24 @@
 import 'package:flutter/material.dart';
-import 'theme/app_theme.dart';
-import 'screens/chat/chat_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(const AvtarXApp());
+  runApp(const BuildSafeApp());
 }
 
-class AvtarXApp extends StatelessWidget {
-  const AvtarXApp({super.key});
+class BuildSafeApp extends StatelessWidget {
+  const BuildSafeApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: "AvtarX",
-      debugShowCheckedModeBanner: false,
-      theme: AppTheme.lightTheme,
-      darkTheme: AppTheme.darkTheme,
-      themeMode: ThemeMode.system,
-      home: const ChatScreen(),
+    return const MaterialApp(
+      home: Scaffold(
+        body: Center(
+          child: Text(
+            "AvatarX Build Test OK",
+            style: TextStyle(fontSize: 20),
+          ),
+        ),
+      ),
     );
   }
 }
-
-# test deploy
